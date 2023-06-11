@@ -1,0 +1,9 @@
+.profile__photo-cover {
+    position: absolute;
+    left: 47px;
+    top: 47px;
+    z-index: -1;
+}
+.profile__photo:hover .profile__photo-cover {
+    z-index: 1;
+}

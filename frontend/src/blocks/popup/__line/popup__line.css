@@ -1,0 +1,9 @@
+.popup__line {
+    margin: 0 36px;
+}
+
+@media screen and (max-width: 767px) {
+    .popup__line {
+        margin: 0 22px;
+    }
+}

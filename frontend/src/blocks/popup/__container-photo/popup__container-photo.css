@@ -1,0 +1,13 @@
+.popup__container-photo {
+  position: relative;
+  /* max-width: 75vw;
+  max-height: 75vh; */
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__container-photo {
+
+  }
+}

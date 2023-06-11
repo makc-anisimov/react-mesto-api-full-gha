@@ -1,0 +1,17 @@
+.header__link {
+    margin: 0;
+    padding: 0;
+    /* width: 56px; */
+    min-height: 22px;
+    background-color: #000;
+    color: #A9A9A9;
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    cursor: pointer;
+
+    /* text-align: right; */
+}

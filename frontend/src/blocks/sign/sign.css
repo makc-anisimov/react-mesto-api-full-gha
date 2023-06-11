@@ -1,0 +1,7 @@
+.sign {
+    margin: 60px auto 0;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}

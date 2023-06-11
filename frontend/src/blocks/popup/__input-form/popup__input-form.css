@@ -1,0 +1,24 @@
+.popup__input-form {
+  margin: 10px 0 0;
+  border: none;
+  padding: 0;
+  max-width: 358px;
+  min-height: 27px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 767px) {
+  .popup__input-form {
+    max-width: 238px;
+  }
+}
+
+.popup__input-form:active {
+  border: none;
+}
