@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const cors = require('cors');
 const { errors } = require('celebrate');
 const {
   login,
@@ -12,27 +13,24 @@ const {
 } = require('./middlewares/validation');
 const NotFoundError = require('./errors/not-found-err');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const { cors }= require('./middlewares/cors');
+// const { cors }= require('./middlewares/cors');
 
 const { PORT = 3000 } = process.env;
 
-const allowedCors = [
-  'https://akum777.nomoredomains.rocks',
-  'localhost:3000'
-];
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {
   useNewUrlParser: true,
 });
 
 const app = express();
 app.use(helmet());
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
 app.post('/signin', loginValidation, login);
-app.post('/signup', cors, createUserValidation, createUser);
+app.post('/signup', createUserValidation, createUser);
 
 app.use('/users', require('./routes/users'));
 app.use('/cards', require('./routes/cards'));
