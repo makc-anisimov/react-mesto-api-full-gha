@@ -5,12 +5,12 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/...
+Адрес репозитория: https://github.com/makc-anisimov/react-mesto-api-full-gha
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 158.160.2.183
 
-Frontend https://...
+Frontend https://akum777.nomoredomains.rocks
 
-Backend https://...
+Backend https://api.akum777.nomoredomains.rocks

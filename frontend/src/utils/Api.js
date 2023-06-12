@@ -99,10 +99,10 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-54',
+  baseUrl: 'https://api.akum777.nomoredomains.rocks',
   headers: {
     // authorization: 'test fail', // для вызова ошибки
-    authorization: 'b1e741c7-60c4-4f43-a930-80a1fe61268c', // мой токен
+    // authorization: 'b1e741c7-60c4-4f43-a930-80a1fe61268c', // мой токен
     'Content-Type': 'application/json'
   }
 });

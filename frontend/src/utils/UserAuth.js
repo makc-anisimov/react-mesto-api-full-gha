@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://api.akum777.nomoredomains.rocks';
 
 class UserAuth {
   constructor({ baseUrl, headers }) {
