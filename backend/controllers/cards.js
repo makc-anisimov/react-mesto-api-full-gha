@@ -17,7 +17,9 @@ const getCards = (req, res, next) => {
 const createCard = (req, res, next) => {
   const { name, link } = req.body;
   return Card.create({ name, link, owner: req.user._id })
-    .then(() => res.status(STATUS_OK).send(req.body))
+    .then((createdCard) => { 
+      res.status(STATUS_OK).send(createdCard);
+    })
     .catch(next);
 };
 
