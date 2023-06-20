@@ -83,7 +83,7 @@ const updateProfile = (req, res, next) => {
     if (!result) {
       throw new NotFoundError('Пользователь не найден');
     }
-    res.status(STATUS_OK).send(req.body);
+    res.status(STATUS_OK).send(result);
   }).catch(next);
 };
 
