@@ -10,7 +10,7 @@ function NavBar({
 	const navigate = useNavigate();
 
 	function signOut() {
-		localStorage.removeItem("token");
+		localStorage.removeItem("jwt");
 		navigate("/sign-in");
 	}
 
@@ -22,8 +22,8 @@ function NavBar({
 		<>
 			{loggedIn &&
 				<div className="header__menu">
-					<h2 className="header__login">{userData}</h2>
-					<button onClick={signOut} className="link header__link">Выйти</button>
+					<h2 className="header__login">{userData.email}</h2>
+					<button onClick={signOut} className="header__link">Выйти</button>
 
 				</div>}
 			{!loggedIn &&

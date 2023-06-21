@@ -12,6 +12,7 @@
     line-height: 22px;
     display: flex;
     cursor: pointer;
+    border: none;
 
     /* text-align: right; */
 }

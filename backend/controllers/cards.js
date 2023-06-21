@@ -51,7 +51,7 @@ const addLike = (req, res, next) => {
       if (!result) {
         throw new NotFoundError('Карточка с указанным _id не найдена');
       }
-      return res.status(STATUS_OK).send();
+      return res.status(STATUS_OK).send(result);
     })
     .catch(next);
 };
@@ -59,14 +59,14 @@ const addLike = (req, res, next) => {
 const deleteLike = (req, res, next) => {
   Card.findByIdAndUpdate(
     req.params.cardId,
-    { $pull: { likes: req.user._id } }, // убрать _id из массива
+    { $pull: { likes: req.user._id } }, // убрать _id из массива///
     { new: true },
   )
     .then((result) => {
       if (!result) {
         throw new NotFoundError('Карточка с указанным _id не найдена');
       }
-      return res.status(STATUS_OK).send();
+      return res.status(STATUS_OK).send(result);
     })
     .catch(next);
 };

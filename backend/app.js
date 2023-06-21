@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
@@ -13,9 +14,10 @@ const {
 } = require('./middlewares/validation');
 const NotFoundError = require('./errors/not-found-err');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-// const { cors }= require('./middlewares/cors');
 
-const { PORT = 3000 } = process.env;
+const { PORT } = process.env;
+
+//  console.log('process.env', process.env);
 
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {
   useNewUrlParser: true,
@@ -28,6 +30,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+}); 
 
 app.post('/signin', loginValidation, login);
 app.post('/signup', createUserValidation, createUser);

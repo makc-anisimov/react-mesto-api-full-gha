@@ -6,9 +6,10 @@ const AccessDeniedError = require('../errors/access-denied-err');
 const ConflictError = require('../errors/conflict-err');
 
 const {
-  STATUS_OK,
   JWT_SECRET,
-} = require('../utils/consts');
+  NODE_ENV
+} = process.env;
+const { STATUS_OK } = require('../utils/consts');
 
 const getUserMe = (req, res, next) => {
   User.findById(req.user._id)
@@ -114,7 +115,10 @@ const login = (req, res, next) => {
       };
     }))
     .then((user) => {
-      const jwt = jsonwebtoken.sign({ _id: user._id.toString() }, JWT_SECRET, { expiresIn: '7d' });
+      const jwt = jsonwebtoken.sign(
+        { _id: user._id.toString() },
+        NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+        { expiresIn: '7d' });
       res.send({ user, jwt });
     })
     .catch(next);

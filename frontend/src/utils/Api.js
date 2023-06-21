@@ -2,32 +2,38 @@ class Api {
   constructor({ baseUrl, headers }) {
     this._headers = headers;
     this._baseUrl = baseUrl;
+  };
+
+  _checkToken() {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      this._headers.Authorization = `Bearer ${jwt}`;
+    };
   }
 
   _getResponseData(res) {
-    if (!res.ok) {
-      return Promise.reject(res.status);
-    }
+    if (!res.ok) { return Promise.reject(res.status); }
     return res.json();
   }
 
   getProfile() {
+    this._checkToken();
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
       .then(this._getResponseData)
   };
 
-
   getInitialCards() {
+    this._checkToken();
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-      .then(res => this._getResponseData(res))
+      .then(this._getResponseData)
   };
 
   edtiProfile(name, about) {
-    return fetch(`${this._baseUrl}/users/me`, {
+        return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -35,7 +41,7 @@ class Api {
         about
       })
     })
-      .then(res => this._getResponseData(res))
+      .then(this._getResponseData)
   }
 
   updateAvatar(newAvatarlink) {
@@ -74,7 +80,7 @@ class Api {
       method: "PUT",
       headers: this._headers
     })
-      .then(res => this._getResponseData(res))
+      .then(this._getResponseData)
   }
 
   deleteLike(id) {
@@ -82,27 +88,20 @@ class Api {
       method: "DELETE",
       headers: this._headers
     })
-      .then(res => this._getResponseData(res))
+      .then(this._getResponseData)
   }
+
   changeLikeCardStatus(id, isLiked) {
     if (isLiked) {
-      return (
-        api.deleteLike(id)
-      )
-
-    } else {
-      return (
-        api.addLike(id)
-      )
-    }
+      return (api.deleteLike(id))
+    } else return (api.addLike(id))
   }
 }
 
 export const api = new Api({
-  baseUrl: 'https://api.akum777.nomoredomains.rocks',
+  baseUrl: 'http://localhost:3001',
+  // baseUrl: 'https://api.akum777.nomoredomains.rocks',
   headers: {
-    // authorization: 'test fail', // для вызова ошибки
-    // authorization: 'b1e741c7-60c4-4f43-a930-80a1fe61268c', // мой токен
     'Content-Type': 'application/json'
   }
 });

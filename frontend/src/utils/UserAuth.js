@@ -1,4 +1,5 @@
-export const BASE_URL = 'https://api.akum777.nomoredomains.rocks';
+// export const BASE_URL = 'https://api.akum777.nomoredomains.rocks';
+export const BASE_URL = 'http://localhost:3001';
 
 class UserAuth {
   constructor({ baseUrl, headers }) {
@@ -10,6 +11,14 @@ class UserAuth {
       return Promise.reject(`Ошибка: ${res.status}`);
     }
     return res.json();
+  }
+  
+  setHeader({ name, value }) {
+    this._headers[name] = value;
+  }
+  
+  delHeader(name) {
+    delete this._headers[name];
   }
 
   register(
@@ -41,15 +50,13 @@ class UserAuth {
     }).then(this._getResponseData);
   }
 
-  getUserInfo(token) {
+  getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
-      headers: {
-        ...this._headers,
-        Authorization: `Bearer ${token}`,
-      },
+      headers: this._headers,
     }).then(this._getResponseData);
   };
+
 }
 
 export const userAuth = new UserAuth({

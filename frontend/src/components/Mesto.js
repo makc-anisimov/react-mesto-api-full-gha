@@ -29,6 +29,10 @@ function Mesto({
 			api.getInitialCards()
 		])
 			.then(([profile, initialCards]) => {
+				
+				console.log('profile', profile);
+				console.log('initialCards', initialCards);
+
 				setCurrentUser(profile);
 				setCards(initialCards);
 			})
@@ -55,10 +59,10 @@ function Mesto({
 	}
 
 	function handleCardLike(card) {
-		const isLiked = card.likes.some(i => i._id === currentUser._id);
+		const isLiked = card.likes.some(likeId => likeId === currentUser._id);
 		api.changeLikeCardStatus(card._id, isLiked)
-			.then((newCard) => {
-				setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+			.then((updatedCard) => {
+				setCards((state) => state.map((c) => c._id === card._id ? updatedCard : c));
 			})
 			.catch(err => console.log(`Ошибка: ${err}`))
 	}
@@ -83,8 +87,9 @@ function Mesto({
 
 	function handleUpdateAvatar(avatar) {
 		api.updateAvatar(avatar)
-			.then((newUserInfo) => {
-				setCurrentUser(newUserInfo);
+			.then((newUserAvatar) => {
+				console.log('newUserAvatar', newUserAvatar);
+				setCurrentUser(newUserAvatar);
 				closeAllPopups();
 			})
 			.catch(err => console.log(`Ошибка: ${err}`))

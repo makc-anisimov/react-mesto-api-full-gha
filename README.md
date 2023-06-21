@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.2.183
+IP 158.160.2.183
 
 Frontend https://akum777.nomoredomains.rocks
 
