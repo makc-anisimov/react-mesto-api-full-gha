@@ -2,7 +2,10 @@ const Card = require('../models/cards');
 const ForbiddenError = require('../errors/forbidden-err');
 const NotFoundError = require('../errors/not-found-err');
 
-const { STATUS_OK } = require('../utils/consts');
+const {
+  STATUS_OK,
+  CREATED,
+} = require('../utils/consts');
 
 const getCards = (req, res, next) => {
   Card.find({})
@@ -17,8 +20,8 @@ const getCards = (req, res, next) => {
 const createCard = (req, res, next) => {
   const { name, link } = req.body;
   return Card.create({ name, link, owner: req.user._id })
-    .then((createdCard) => { 
-      res.status(STATUS_OK).send(createdCard);
+    .then((createdCard) => {
+      res.status(CREATED).send(createdCard);
     })
     .catch(next);
 };

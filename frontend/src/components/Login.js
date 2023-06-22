@@ -22,7 +22,6 @@ function Login({
 			...userData,
 			[name]: value,
 		});
-		// console.log('function handleChange userData:', userData);
 	}
 
 	function handleSubmit(evt) {

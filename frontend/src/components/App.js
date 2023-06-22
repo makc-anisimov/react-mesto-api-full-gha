@@ -39,7 +39,11 @@ function App() {
 					tokenCheck();
 				}
 			})
-			.catch(err => console.log(`Ошибка: ${err}`));
+			.catch((err) => {
+				setInfoToolTipOk(false);
+				setInfoToolTipOpened(true);
+				console.log(`Ошибка: ${err}`);
+			});
 	}
 
 	function handleRegister({ email, password }) {
