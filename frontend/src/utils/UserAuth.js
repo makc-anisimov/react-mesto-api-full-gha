@@ -1,5 +1,5 @@
-// export const BASE_URL = 'https://api.akum777.nomoredomains.rocks';
-export const BASE_URL = 'http://localhost:3001';
+export const BASE_URL = 'https://api.akum777.nomoredomains.rocks';
+// export const BASE_URL = 'http://localhost:3001';
 
 class UserAuth {
   constructor({ baseUrl, headers }) {

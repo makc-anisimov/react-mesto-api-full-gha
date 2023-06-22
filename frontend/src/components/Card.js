@@ -10,12 +10,8 @@ function Card({
 }) {
 	const currentUser = useContext(CurrentUserContext);
 	const isOwn = card.owner === currentUser._id;
-	// const isOwn = card.owner._id === currentUser._id;
 	const isLiked = card.likes.some(id => id === currentUser._id);
 	const cardLikeButtonClassName = (`element__like ${isLiked && 'element__like_active'}`);
-
-	console.log('function Card isLiked', isLiked);
-	// console.log('isOwn', isOwn);
 
 	function handleCardClick() {
 		onCardClick(card);

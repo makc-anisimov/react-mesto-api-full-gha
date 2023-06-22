@@ -29,10 +29,6 @@ function Mesto({
 			api.getInitialCards()
 		])
 			.then(([profile, initialCards]) => {
-				
-				console.log('profile', profile);
-				console.log('initialCards', initialCards);
-
 				setCurrentUser(profile);
 				setCards(initialCards);
 			})

@@ -15,7 +15,6 @@ function App() {
 	const [userData, setUserData] = useState({ email: "" });
 
 	useEffect(() => {
-		// setToken();
 		tokenCheck();
 	}, []);
 
@@ -36,13 +35,8 @@ function App() {
 		return userAuth.authorize({ email, password })
 			.then((data) => {
 				if (data.jwt) {
-					// console.log('handleLogin data.jwt ', data.jwt);
 					localStorage.setItem("jwt", `${data.jwt}`);
 					tokenCheck();
-					// userAuth.setHeader({ name: "Authorization", value: `Bearer ${data.jwt}` });
-					// setLoggedIn(true);
-					// setUserData(data.user);
-					// navigate("/");
 				}
 			})
 			.catch(err => console.log(`Ошибка: ${err}`));
@@ -61,35 +55,6 @@ function App() {
 				console.log('Ошибка:', err);
 			});
 	}
-
-	// function setUserInfo() {
-	// 	// const jwt = localStorage.getItem("jwt");
-	// 		userAuth.getUserInfo()
-	// 			.then((userInfo) => {
-	// 				// console.log('userInfo', userInfo);
-	// 				// setLoggedIn(true);
-	// 				// setUserData(userInfo);
-	// 				// navigate("/");
-	// 			})
-	// 			.catch(err => console.log(`Ошибка: ${err}`));
-	// }
-
-	// function setToken() {
-	// 	const jwt = localStorage.getItem("jwt");
-	// 	if (jwt) {
-	// 		userAuth.setHeader({ name: "Authorization", value: `Bearer ${jwt}` });
-
-	// 		userAuth.getUserInfo()
-	// 			.then((userData) => {
-	// 				console.log('userData', userData);
-	// 				// setLoggedIn(true);
-	// 				// setUserData(userData);
-	// 				// navigate("/");
-	// 			})
-	// 			.catch(err => console.log(`Ошибка: ${err}`));
-	// 		// navigate("/");
-	// 	}
-	// }
 
 	function closeInfoToolTip() {
 		setInfoToolTipOpened(false);
