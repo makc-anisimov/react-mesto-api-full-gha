@@ -2,7 +2,7 @@ require('dotenv').config();
 const jsonwebtoken = require('jsonwebtoken');
 const AccessDeniedError = require('../errors/access-denied-err');
 
-const { JWT_SECRET } = process.env;
+const { JWT_SECRET, NODE_ENV } = process.env;
 
 const auth = (req, res, next) => {
   const { authorization } = req.headers;
@@ -15,7 +15,10 @@ const auth = (req, res, next) => {
 
   let payload;
   try {
-    payload = jsonwebtoken.verify(jwt, JWT_SECRET);
+    payload = jsonwebtoken.verify(
+      jwt,
+      NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+    );
     req.user = payload;
     next();
   } catch (e) {
